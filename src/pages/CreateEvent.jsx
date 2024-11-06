@@ -3,9 +3,12 @@ import Layout from "../components/Layout";
 import { MdCancel } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import ActionBtn from "../components/ActionBtn";
+import { MdLocationPin } from "react-icons/md";
 
 const CreateEvent = () => {
   const [online, setOnline] = useState(false);
+  const [free, setFree] = useState(false);
+
   const [imgPreview, setImgPreview] = useState(null);
   const [fileError, setFileError] = useState(null);
   const [tags, setTags] = useState([]);
@@ -155,11 +158,15 @@ const CreateEvent = () => {
             <label htmlFor="location" className="form-label fs-6 fw-semibold">
               Location
             </label>
-            <div className="d-flex justify-content-between gap-3 align-items-center">
+            <div className="d-flex justify-content-between gap-3 align-items-center position-relative">
+              <MdLocationPin
+                className="position-absolute"
+                style={{ left: "3px" }}
+              />
               <input
                 id="location"
                 type="text"
-                className="form-control shadow-none bg-secondary-subtle py-2 w-100"
+                className="form-control shadow-none bg-secondary-subtle py-2 w-100 ps-4"
                 placeholder="Enter Location"
               />
               <div className="form-check form-check-reverse form-switch">
@@ -180,7 +187,18 @@ const CreateEvent = () => {
             </div>
           </div>
 
-          {/* map */}
+          {/* description */}
+          <div className="my-2">
+            <label htmlFor="desc" className="form-label fs-4 fw-semibold my-2">
+              Description
+            </label>
+            <textarea
+              name=""
+              id="desc"
+              className="form-control bg-secondary-subtle shadow-none"
+              rows="12"
+            ></textarea>
+          </div>
           {/* start of category */}
           <div className="my-4">
             <label className="form-label fs-4 fw-semibold my-2">
@@ -231,8 +249,7 @@ const CreateEvent = () => {
               {tags.map((tag, index) => (
                 <div
                   key={index}
-                  className="badge bg-dark d-flex align-items-center gap-2 px-2 py-1"
-                  style={{ borderRadius: "4px" }}
+                  className=" rounded-2 bg-white border border-2 border-secondary text-dark d-flex align-items-center gap-2 px-2 py-1"
                 >
                   <span>{tag}</span>
                   <MdCancel
@@ -247,13 +264,40 @@ const CreateEvent = () => {
           </div>
           {/* end of category */}
           {/* start of pricing */}
+          <div style={{ maxWidth: "400px" }}>
+            <label className="form-label fs-4 fw-semibold my-2">Pricing</label>
+            <div className="my-2 d-flex align-items-center justify-content-between">
+              <label className="form-label fs-6 fw-semibold">Free</label>
+              <div className="form-switch">
+                <input
+                  className="form-check-input shadow-none"
+                  type="checkbox"
+                  role="switch"
+                  checked={free}
+                  onChange={() => setFree(!free)}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="form-label fs-6 fw-semibold">Regular</label>
+              <input
+                type="number"
+                className="form-control shadow-none bg-secondary-subtle py-2 w-100"
+                placeholder="Regular Ticket"
+              />
+              <label className="form-label fs-6 fw-semibold mt-3">VIP</label>
+              <input
+                type="number"
+                className="form-control shadow-none bg-secondary-subtle py-2 w-100"
+                placeholder="VIP Ticket"
+              />
+            </div>
+          </div>
 
           {/* end of pricing */}
-          <div>
-            <label className="form-label fs-4 fw-semibold my-2">Pricing</label>
-          </div>
+
           {/* submit btn */}
-          <div className="d-flex gap-2 align-items-center my-5">
+          <div className="d-flex gap-2 align-items-center my-5 justify-content-between">
             <button
               style={{ height: "50px", width: "150px" }}
               className="btn-outline-dark btn border border-2 border-dark fw-bold"
