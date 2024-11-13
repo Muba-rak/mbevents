@@ -23,40 +23,33 @@ const PaymentCard = () => {
   return (
     <div
       className="bg-dark rounded-2 p-3"
-      style={{ width: "300px", height: "307px" }}
+      style={{ width: "300px", height: "269px" }}
     >
-      <h3 className="text-center">Select Ticket</h3>
+      <h3 className="text-center mb-1">Pricing</h3>
       <div className="ticket-type mt-4">
         <span>VIP</span>
-        <div className="counter d-flex gap-2">
+        {/* <div className="counter d-flex gap-2">
           <button onClick={() => handleVipChange("decrease")}>-</button>
           <span>{vipCount}</span>
           <button onClick={() => handleVipChange("increase")}>+</button>
-        </div>
+        </div> */}
+        <span className="fw-bolder">NGN 10,000</span>
       </div>
 
       <div className="ticket-type">
         <span>Regular</span>
-        <div className="counter d-flex gap-2">
+        {/* <div className="counter d-flex gap-2">
           <button onClick={() => handleRegularChange("decrease")}>-</button>
           <span>{regularCount}</span>
           <button onClick={() => handleRegularChange("increase")}>+</button>
-        </div>
-      </div>
-      <hr />
-      <div className="total">
-        <span>Total</span>
-        <div className="counter d-flex gap-2">
-          <button className="invisible">-</button>
-          <span>{totalTickets}</span>
-          <button className="invisible">+</button>
-        </div>
+        </div> */}
+        <span className="fw-bolder">NGN 5,000</span>
       </div>
 
       <ActionBtn
         content="Proceed To Payment"
         width={"100%"}
-        className="herobtn"
+        className="herobtn mt-4"
       />
     </div>
   );
