@@ -14,7 +14,7 @@ const Pagination = () => {
       </button>
       <p>Page 1 of 10</p>
       <button
-        className="main-bg-color text-white rounded-1 border-0 fs-5 fw-medium"
+        className="main-bg-color text-white rounded-1 border-0 fs-5 fw-medium specialbtn"
         style={buttonStyles(false)}
       >
         Next

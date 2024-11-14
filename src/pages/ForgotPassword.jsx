@@ -2,11 +2,25 @@ import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import ActionBtn from "../components/ActionBtn";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { forgotPasswordSchema } from "../utils/formValidator";
 
 const ForgotPassword = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(forgotPasswordSchema),
+  });
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
   return (
     <div className="vh-100 d-flex justify-content-center align-items-center reset-container">
-      <form className="p-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-2">
         <Link to="/">
           <img src={logo} alt="logo" className="d-block mx-auto my-2" />
         </Link>
@@ -17,9 +31,18 @@ const ForgotPassword = () => {
         <input
           type="email"
           placeholder="Email Address"
-          className="form-control shadow-none w-100 border border-1 border-secondary mb-3 py-2"
+          className="form-control shadow-none w-100 border border-1 border-secondary mb-1 py-2"
+          {...register("email")}
         />
-        <ActionBtn width={"100%"} content="Reset Password" type="submit" />
+        {errors.email && (
+          <div className="text-danger">{errors.email.message}</div>
+        )}
+        <ActionBtn
+          width={"100%"}
+          content="Reset Password"
+          type="submit"
+          className="specialbtn mt-2"
+        />
       </form>
     </div>
   );

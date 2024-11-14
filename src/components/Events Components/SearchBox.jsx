@@ -44,7 +44,12 @@ const SearchBox = () => {
               <option value="paid">Paid</option>
             </select>
 
-            <ActionBtn content="Apply" width={"128px"} type="submit" />
+            <ActionBtn
+              content="Apply"
+              width={"128px"}
+              type="submit"
+              className="herobtn"
+            />
             <button
               type="button"
               className="bg-transparent main-color border-0"

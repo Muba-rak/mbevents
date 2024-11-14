@@ -14,6 +14,9 @@
 .mybtn {
   border: none;
 }
+.specialbtn:hover {
+  background-color: black;
+}
 .herobtn:hover {
   background-color: black;
   border: 2px solid white;
@@ -315,4 +318,8 @@ button:focus {
   .myform form {
     width: 50%;
   }
+}
+.eye {
+  top: 20%;
+  right: 10px;
 }

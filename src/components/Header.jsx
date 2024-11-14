@@ -94,7 +94,7 @@ function Header() {
               </Link>
               <Link to="/login" className="fs-5 text-dark text-decoration-none">
                 <button
-                  className="btn bg-transparent border-dark border-2"
+                  className="btn btn-outline-dark border-dark border-2"
                   style={{ width: "146px", height: "50px" }}
                 >
                   Sign In
