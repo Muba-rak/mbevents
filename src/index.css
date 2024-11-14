@@ -67,6 +67,12 @@
 .category-item {
   position: relative;
   overflow: hidden;
+  width: 300px;
+}
+@media (min-width: 1200px) {
+  .category-item {
+    width: 400px;
+  }
 }
 
 .category-item img {
@@ -145,13 +151,13 @@
 }
 @media (max-width: 400px) {
   .eventcard {
-    width: 300px;
+    width: 310px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1000px) {
   .eventcard {
-    width: 320px;
+    width: 330px;
   }
 }
 

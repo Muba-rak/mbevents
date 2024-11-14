@@ -14,7 +14,7 @@ const EventProperties = ({
   tags,
 }) => {
   return (
-    <div className="container">
+    <div className="container ">
       <img
         src={image}
         alt={title}
@@ -22,7 +22,7 @@ const EventProperties = ({
         height={"345px"}
       />
 
-      <div className="row my-3 justify-content-between">
+      <div className="row mt-5 mb-3 justify-content-between">
         <div className="col-md-7">
           <h1 className="fs-3">
             <FaCalendarAlt /> {date} 7:00PM
@@ -33,7 +33,10 @@ const EventProperties = ({
           <div className="d-flex gap-3 my-4 align-items-center">
             {tags.map((tag, index) => {
               return (
-                <p key={index} className="border border-3 py-1 px-2 rounded-2">
+                <p
+                  key={index}
+                  className="border border-3 py-1 px-2 rounded-2 text-capitalize"
+                >
                   {tag}{" "}
                 </p>
               );
@@ -41,15 +44,18 @@ const EventProperties = ({
           </div>
           <h1>{title} </h1>
           <p>
-            Legendary British heavy metal band Iron Maiden rocked the stage at
-            Teslim Balogun Stadium in Surulere, Lagos, delivering an
-            electrifying performance that left fans in awe. With their iconic
-            stage presence, powerful vocals, and epic guitar solos, Iron Maiden
-            treated the crowd to a night of timeless classics and fan favorites.
-            The stadium buzzed with energy as thousands of metalheads sang along
-            to hits like "The Trooper" and "Run to the Hills," marking a
-            historic moment in Nigeria's music scene. It was an unforgettable
-            concert, cementing Iron Maiden's legacy as global heavy metal icons.
+            Digital marketing has become an essential skill in today's business
+            landscape, and a comprehensive course can equip you with the
+            knowledge to excel. Dive into the world of digital marketing with an
+            in-depth curriculum covering SEO, social media marketing, content
+            creation, and email campaigns. Learn the latest techniques to
+            optimize your online presence and drive traffic to your website.
+            From understanding analytics to mastering PPC advertising, this
+            course will guide you through every step. With real-world case
+            studies and hands-on projects, you'll gain practical experience and
+            confidence. By the end, you'll be ready to boost any brand's digital
+            footprint and achieve measurable success in the ever-evolving online
+            market.
           </p>
         </div>
         <div className="col-md-4  text-white d-flex justify-content-start justify-content-md-end ">

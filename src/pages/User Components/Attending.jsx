@@ -6,7 +6,7 @@ import Pagination from "../../components/Pagination";
 const Attending = () => {
   return (
     <div className="container">
-      <h2 className="my-3">Previous Events</h2>
+      <h2 className="my-3">Events Attending</h2>
       <div className="d-flex justify-content-between flex-wrap">
         {events.slice(3, 6).map((event) => {
           return <EventCard key={event._id} {...event} />;

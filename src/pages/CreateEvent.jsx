@@ -90,7 +90,7 @@ const CreateEvent = () => {
   const [imgPreview, setImgPreview] = useState(null);
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const {
     register,
@@ -320,7 +320,7 @@ const CreateEvent = () => {
                   style={{ width: "241px" }}
                   {...register("category")}
                 >
-                  <option value="" disabled>
+                  <option value="" defaultValue>
                     Category
                   </option>
                   <option value="sport">Sports</option>
@@ -384,8 +384,8 @@ const CreateEvent = () => {
                   type="checkbox"
                   role="switch"
                   checked={free}
-                  onChange={() => setFree(!free)}
-                  {...register("free")}
+                  onChange={(e) => setFree(!free)}
+                  // {...register("free")}
                 />
               </div>
             </div>

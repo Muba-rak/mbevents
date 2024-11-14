@@ -6,7 +6,7 @@ import cat1 from "../../assets/cat1.png";
 import { Link } from "react-router-dom";
 
 const EventCategories = () => {
-  const data = [
+  const categories = [
     {
       id: 1,
       img: cat3,
@@ -27,10 +27,10 @@ const EventCategories = () => {
     <div className="my-3 container">
       <SectionHeading heading="Event Categories" />
       <div className="d-flex justify-content-between align-items-center my-2 flex-wrap">
-        {data.map((one) => {
+        {categories.map((one) => {
           return (
             <div
-              className="category-item position-relative mx-auto mx-xl-0"
+              className="category-item position-relative mx-auto mx-xl-0 my-2"
               key={one.id}
             >
               <img

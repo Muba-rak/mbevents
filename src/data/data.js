@@ -94,7 +94,7 @@ export const links = [
   {
     id: 2,
     to: "/events",
-    content: "Event",
+    content: "Events",
   },
   {
     id: 3,

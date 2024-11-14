@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import {
   IoMdMenu,
@@ -14,14 +14,12 @@ import {
 } from "react-icons/io";
 import UserProfileMenu from "./UserProfileMenu";
 import ActionBtn from "./ActionBtn";
-import { useNavigate } from "react-router-dom";
 import { links } from "../data/data";
 
 function Header() {
   const [expanded, setExpanded] = useState(false);
-  const [show, setShow] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const redirect = useNavigate();
   const location = useLocation();
 
   const handleToggle = () => {
@@ -61,7 +59,7 @@ function Header() {
               );
             })}
           </Nav>
-          {show ? (
+          {isLoggedIn ? (
             <Nav className="position-relative logout ms-lg-auto d-flex flex-row gap-3">
               <div className="rounded-circle profile d-flex justify-content-center align-items-center">
                 <h1>JD</h1>
@@ -94,17 +92,14 @@ function Header() {
                   className="herobtn"
                 />
               </Link>
-              <Button
-                className="btn bg-transparent border-dark border-2"
-                style={{ width: "137px" }}
-              >
-                <Link
-                  to="/login"
-                  className="fs-5 text-dark text-decoration-none"
+              <Link to="/login" className="fs-5 text-dark text-decoration-none">
+                <button
+                  className="btn bg-transparent border-dark border-2"
+                  style={{ width: "146px", height: "50px" }}
                 >
                   Sign In
-                </Link>
-              </Button>
+                </button>
+              </Link>
             </Nav>
           )}
         </Navbar.Collapse>

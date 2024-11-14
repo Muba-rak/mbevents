@@ -10,7 +10,7 @@ const UpcomingEvents = () => {
         className=" d-flex justify-content-between align-items-center gap-4 event-container my-3"
         style={{ overflowX: "scroll" }}
       >
-        {events.slice(4).map((event) => {
+        {events.slice(3).map((event) => {
           return <EventCard key={event._id} {...event} />;
         })}
       </div>
