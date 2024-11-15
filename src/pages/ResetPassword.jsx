@@ -48,7 +48,7 @@ const ResetPassword = () => {
               {show ? <FaRegEyeSlash /> : <FaRegEye />}
             </button>
             {errors.password && (
-              <p className="text-danger">{errors.password.message}</p>
+              <small className="text-danger">{errors.password.message}</small>
             )}
           </div>
 
@@ -67,7 +67,9 @@ const ResetPassword = () => {
               {show2 ? <FaRegEyeSlash /> : <FaRegEye />}
             </button>
             {errors.confirmPassword && (
-              <p className="text-danger">{errors.confirmPassword.message}</p>
+              <small className="text-danger">
+                {errors.confirmPassword.message}
+              </small>
             )}
           </div>
           <ActionBtn

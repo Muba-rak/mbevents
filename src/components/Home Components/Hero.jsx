@@ -1,5 +1,6 @@
 import React from "react";
 import ActionBtn from "../ActionBtn";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -14,7 +15,9 @@ const Hero = () => {
             gatherings with ease. Create events, connect with your audience, and
             start making lasting memories today!"
           </p>
-          <ActionBtn content="Sign Up" width="264px" className="herobtn" />
+          <Link to="/register">
+            <ActionBtn content="Sign Up" width="264px" className="herobtn" />
+          </Link>
         </div>
       </div>
     </div>

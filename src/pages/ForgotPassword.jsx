@@ -35,7 +35,7 @@ const ForgotPassword = () => {
           {...register("email")}
         />
         {errors.email && (
-          <div className="text-danger">{errors.email.message}</div>
+          <small className="text-danger">{errors.email.message}</small>
         )}
         <ActionBtn
           width={"100%"}

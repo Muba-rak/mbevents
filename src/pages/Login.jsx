@@ -49,7 +49,7 @@ const Login = () => {
           }`}
         />
         {errors.email && (
-          <div className="text-danger">{errors.email.message}</div>
+          <small className="text-danger">{errors.email.message}</small>
         )}
         <div className="position-relative w-100">
           <input
@@ -59,7 +59,7 @@ const Login = () => {
             className="form-control shadow-none w-100 border border-1 border-secondary mb-1 mt-3 py-3"
           />
           {errors.password && (
-            <div className="text-danger">{errors.password.message}</div>
+            <small className="text-danger">{errors.password.message}</small>
           )}
 
           <button

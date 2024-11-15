@@ -48,43 +48,40 @@ const Register = () => {
         <input
           type="text"
           placeholder="Full Name"
-          className={`form-control shadow-none w-100 border border-1 border-secondary mb-3 py-2 ${
-            errors.fullName ? "is-invalid" : ""
-          }`}
+          className={`form-control shadow-none w-100 border border-1 border-secondary mb-1 py-2`}
           {...register("fullName")}
         />
         {errors.fullName && (
-          <p className="text-danger">{errors.fullName.message}</p>
+          <small className="text-danger">{errors.fullName.message}</small>
         )}
 
         <input
           type="email"
           placeholder="Email Address"
-          className={`form-control shadow-none w-100 border border-1 border-secondary mb-3 py-2 ${
-            errors.email ? "is-invalid" : ""
-          }`}
+          className={`form-control shadow-none w-100 border border-1 border-secondary mb-1 mt-3 py-2 `}
           {...register("email")}
         />
-        {errors.email && <p className="text-danger">{errors.email.message}</p>}
+        {errors.email && (
+          <small className="text-danger">{errors.email.message}</small>
+        )}
 
         <div className="position-relative w-100">
           <input
             type={show ? "text" : "password"}
             placeholder="Password"
-            className={`form-control shadow-none w-100 border border-1 border-secondary mb-3 py-2 ${
-              errors.password ? "is-invalid" : ""
-            }`}
+            className={`form-control shadow-none w-100 border border-1 border-secondary mb-1 mt-3 py-2`}
             {...register("password")}
           />
           <button
             type="button"
             onClick={toggleShow}
             className="bg-transparent border-0 text-secondary position-absolute eye"
+            style={{ top: "10%" }}
           >
             {show ? <FaRegEyeSlash /> : <FaRegEye />}
           </button>
           {errors.password && (
-            <p className="text-danger">{errors.password.message}</p>
+            <small className="text-danger">{errors.password.message}</small>
           )}
         </div>
 
@@ -92,24 +89,25 @@ const Register = () => {
           <input
             type={show2 ? "text" : "password"}
             placeholder="Confirm Password"
-            className={`form-control shadow-none w-100 border border-1 border-secondary mb-3 py-2 ${
-              errors.confirmPassword ? "is-invalid" : ""
-            }`}
+            className={`form-control shadow-none w-100 border border-1 border-secondary mb-1 mt-3 py-2 `}
             {...register("confirmPassword")}
           />
           <button
             type="button"
             onClick={toggleShow2}
             className="bg-transparent border-0 text-secondary position-absolute eye"
+            style={{ top: "10%" }}
           >
             {show2 ? <FaRegEyeSlash /> : <FaRegEye />}
           </button>
           {errors.confirmPassword && (
-            <p className="text-danger">{errors.confirmPassword.message}</p>
+            <small className="text-danger">
+              {errors.confirmPassword.message}
+            </small>
           )}
         </div>
 
-        <div className="form-check mt-2 mb-4 w-100">
+        <div className="form-check mt-2 mb-1 w-100">
           <input
             className="form-check-input"
             type="checkbox"
@@ -124,10 +122,10 @@ const Register = () => {
             I Agree to <span className="text-decoration-underline">Terms</span>{" "}
             and <span className="text-decoration-underline">Conditions</span>
           </label>
-          {errors.terms && (
-            <p className="text-danger">{errors.terms.message}</p>
-          )}
         </div>
+        {errors.terms && (
+          <small className="text-danger">{errors.terms.message}</small>
+        )}
 
         <ActionBtn
           width={"100%"}
