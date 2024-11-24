@@ -90,7 +90,7 @@ const CreateEvent = () => {
   const [imgPreview, setImgPreview] = useState(null);
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const {
     register,

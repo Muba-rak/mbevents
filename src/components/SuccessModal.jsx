@@ -15,7 +15,6 @@ const SuccessModal = ({ showModal }) => {
         animation={true}
       >
         <Modal.Body>
-          {/* <BiCheckDouble className="main-color  w-25 h-25" /> */}
           <img src={check} alt="" />
           <h2 className="my-2 fs-3">Awesome</h2>
           <p className="fs-5 fw-medium">Your event has been created</p>

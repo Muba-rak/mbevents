@@ -26,11 +26,11 @@ const EventCategories = () => {
   return (
     <div className="my-3 container">
       <SectionHeading heading="Event Categories" />
-      <div className="d-flex justify-content-between align-items-center my-2 flex-wrap">
+      <div className="d-flex justify-content-between align-items-center my-2 flex-wrapp event-container col-12 overflow-x-scroll gap-3">
         {categories.map((one) => {
           return (
             <div
-              className="category-item position-relative mx-auto mx-xl-0 my-2"
+              className="category-item position-relative mx-auto mx-xl-0 my-2 col-12"
               key={one.id}
             >
               <img

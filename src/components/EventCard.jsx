@@ -27,7 +27,10 @@ const EventCard = ({
           loading="lazy"
         />
         <div className="mt-2 pb-2">
-          <h3 style={{ height: "40px" }}> {title} </h3>
+          <h3 style={{ height: "50px" }} className="my-auto">
+            {" "}
+            {title}{" "}
+          </h3>
           <p className="mb-0">
             <span className="fw-medium fs-5 mt-3">Host :</span> {host}
           </p>

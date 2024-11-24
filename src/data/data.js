@@ -3,7 +3,7 @@ export const events = [
     _id: 1,
     image:
       "https://upload.wikimedia.org/wikipedia/en/7/7c/Iron_Maiden_%28album%29_cover.jpg",
-    title: "Iron Maiden World Tour 2024",
+    title: "Iron Maiden World Tour",
     host: "Iron Maiden",
     category: "Concert",
     location: "Teslim Balogun Stadium, Surulere",

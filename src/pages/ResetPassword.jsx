@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ActionBtn from "../components/ActionBtn";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { resetPasswordScchema } from "../utils/formValidator";
@@ -19,11 +19,17 @@ const ResetPassword = () => {
   } = useForm({
     resolver: yupResolver(resetPasswordScchema),
   });
+  const location = useLocation();
+
+  const urlParams = new URLSearchParams(location.search);
+  const token = urlParams.get("token");
+  console.log({ token });
 
   const onSubmit = (data) => {
     // Handle form submission logic here
     console.log(data);
   };
+
   return (
     <div>
       <div className="vh-100 d-flex justify-content-center align-items-center reset-container">
