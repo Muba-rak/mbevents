@@ -2,10 +2,10 @@ import React from "react";
 import SectionHeading from "../SectionHeading";
 import { events } from "../../data/data";
 import EventCard from "../EventCard";
-const EventNearYou = () => {
+const FreeEvents = () => {
   return (
     <div className="my-5 container">
-      <SectionHeading heading="Events Near You" />
+      <SectionHeading heading="Free Events" />
       <div
         className=" d-flex justify-content-between align-items-center gap-4 event-container  my-3"
         style={{ overflowX: "scroll" }}
@@ -18,4 +18,4 @@ const EventNearYou = () => {
   );
 };
 
-export default EventNearYou;
+export default FreeEvents;

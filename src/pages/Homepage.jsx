@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import Hero from "../components/Home Components/Hero";
 import EventCategories from "../components/Home Components/EventCategories";
 import HowItWorks from "../components/Home Components/HowItWorks";
-import EventNearYou from "../components/Home Components/EventNearYou";
+import FreeEvents from "../components/Home Components/FreeEvents";
 import UpcomingEvents from "../components/Home Components/UpcomingEvents";
 
 const Homepage = () => {
@@ -14,7 +14,7 @@ const Homepage = () => {
         <UpcomingEvents />
         <EventCategories />
         <HowItWorks />
-        <EventNearYou />
+        <FreeEvents />
       </Layout>
     </>
   );
