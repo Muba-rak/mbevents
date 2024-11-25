@@ -2,23 +2,27 @@ import React from "react";
 import { useState } from "react";
 import ActionBtn from "../ActionBtn";
 import ConfirmPaymentModal from "./ConfirmPaymentModal";
+import Caution from "./Caution";
 import { toast } from "react-toastify";
 
 const PaymentCard = () => {
   const [showModal, setShowModal] = useState(false);
+  const token = true;
 
   return (
     <div
       className="bg-dark rounded-2 p-3"
       style={{ width: "300px", height: "269px" }}
     >
-      {showModal && (
+      {showModal && token ? (
         <ConfirmPaymentModal
           showModal={showModal}
           setShowModal={setShowModal}
           vipPrice={10000}
           regularPrice={5000}
         />
+      ) : (
+        <Caution showModal={showModal} setShowModal={setShowModal} />
       )}
       <h3 className="text-center mb-1">Pricing</h3>
       <div className="ticket-type mt-4">
