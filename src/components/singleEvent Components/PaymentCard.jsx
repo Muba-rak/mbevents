@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const PaymentCard = () => {
   const [showModal, setShowModal] = useState(false);
-  const token = true;
+  const token = false;
 
   return (
     <div
