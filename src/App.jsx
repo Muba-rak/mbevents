@@ -18,6 +18,7 @@ import {
 } from "./pages";
 import { Suspense } from "react";
 import FallBackLoader from "./components/FallBackLoader";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -27,16 +28,20 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/events" element={<Events />} />
           <Route path="/events/:eventId" element={<EventDetails />} />
-          <Route path="/create-event" element={<CreateEvent />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/create-event" element={<CreateEvent />} />
+          </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/your-events" element={<UsersEvent />}>
-            <Route index element={<Hosting />} />
-            <Route path="attending" element={<Attending />} />
-            <Route path="previous" element={<Previous />} />
-            <Route path="saved" element={<Bookmarked />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/your-events" element={<UsersEvent />}>
+              <Route index element={<Hosting />} />
+              <Route path="attending" element={<Attending />} />
+              <Route path="previous" element={<Previous />} />
+              <Route path="saved" element={<Bookmarked />} />
+            </Route>
           </Route>
 
           <Route path="*" element={<Error404 />} />
