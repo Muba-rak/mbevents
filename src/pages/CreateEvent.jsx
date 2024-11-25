@@ -6,6 +6,7 @@ import SuccessModal from "../components/SuccessModal";
 
 const CreateEvent = () => {
   const [online, setOnline] = useState(false);
+  const [file, setFile] = useState(null);
   const [free, setFree] = useState(false);
   const [imgPreview, setImgPreview] = useState(null);
   const [photoError, setPhotoError] = useState("");
@@ -13,14 +14,12 @@ const CreateEvent = () => {
   const [tagInput, setTagInput] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    photo: null,
     date: "",
     startTime: "",
     endTime: "",
     location: "",
     description: "",
     category: "",
-    tags: [],
     regularPrice: "",
     vipPrice: "",
   });
@@ -47,7 +46,7 @@ const CreateEvent = () => {
     if (file) {
       if (file.size <= 2 * 1024 * 1024) {
         setImgPreview(URL.createObjectURL(file));
-        setFormData({ ...formData, photo: file });
+        setFile(file);
       } else {
         setPhotoError("Picture must not exceed 2MB");
       }
@@ -61,7 +60,29 @@ const CreateEvent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data:", formData);
+    const formDataToSend = new FormData();
+
+    // Append all formData fields
+    for (const key in formData) {
+      if (formData[key]) {
+        formDataToSend.append(key, formData[key]);
+      }
+    }
+
+    // Append the tags array as a stringified JSON
+    formDataToSend.append("tags", JSON.stringify(tags));
+
+    // Append online and free fields
+    formDataToSend.append("online", online);
+    formDataToSend.append("free", free);
+    formDataToSend.append("image", file);
+
+    // Debugging: Log the formData entries
+    for (let pair of formDataToSend.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    // Make the API request (you can use fetch/axios here)
   };
 
   return (
@@ -190,10 +211,6 @@ const CreateEvent = () => {
                   checked={online}
                   onChange={() => {
                     setOnline(!online);
-                    setFormData({
-                      ...formData,
-                      location: online ? "online" : null,
-                    });
                   }}
                 />
                 <label
