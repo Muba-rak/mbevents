@@ -175,6 +175,7 @@ const CreateEvent = () => {
               <input
                 id="location"
                 type="text"
+                style={{ cursor: online ? "not-allowed" : "" }}
                 className="form-control shadow-none bg-secondary-subtle py-2 w-100 ps-4"
                 placeholder="Enter Location"
                 name="location"
@@ -242,8 +243,10 @@ const CreateEvent = () => {
                   <option value="">Category</option>
                   <option value="sport">Sports</option>
                   <option value="party">Party</option>
+                  <option value="concert">Concert</option>
                   <option value="tech">Tech</option>
                   <option value="religion">Religion</option>
+                  <option value="eductaion">Education</option>
                 </select>
               </div>
               <div>
@@ -312,7 +315,7 @@ const CreateEvent = () => {
                     htmlFor="regularPrice"
                     className="form-label fs-6 fw-semibold"
                   >
-                    Regular Price
+                    Regular
                   </label>
                   <input
                     id="regularPrice"
@@ -328,7 +331,7 @@ const CreateEvent = () => {
                     htmlFor="vipPrice"
                     className="form-label fs-6 fw-semibold"
                   >
-                    VIP Price
+                    VIP
                   </label>
                   <input
                     id="vipPrice"
