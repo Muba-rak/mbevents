@@ -2,6 +2,7 @@ import React from "react";
 import EventCard from "../../components/EventCard";
 import { events } from "../../data/data";
 import Pagination from "../../components/Pagination";
+import Empty from "../../components/Empty";
 
 const Previous = () => {
   return (

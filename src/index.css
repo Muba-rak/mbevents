@@ -323,3 +323,7 @@ button:focus {
   top: 20%;
   right: 10px;
 }
+
+.reset-btn:hover {
+  text-decoration: underline;
+}

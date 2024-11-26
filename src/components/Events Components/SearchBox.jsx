@@ -52,7 +52,7 @@ const SearchBox = () => {
             />
             <button
               type="button"
-              className="bg-transparent main-color border-0"
+              className="bg-transparent main-color border-0 reset-btn"
             >
               Reset Filters
             </button>
