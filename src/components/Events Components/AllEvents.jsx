@@ -7,7 +7,7 @@ const AllEvents = () => {
     <div className="container py-4">
       <h2 className="mt-3">All Events</h2>
 
-      {true ? (
+      {false ? (
         <Empty
           content="Sorry, there are no events for this selection"
           height="300px"
