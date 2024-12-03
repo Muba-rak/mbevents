@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MdOutlineCalendarMonth,
   MdHelpOutline,
   MdOutlineLogout,
 } from "react-icons/md";
 import { IoPersonOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const UserProfileMenu = () => {
+const UserProfileMenu = ({ setIsLoggedIn }) => {
+  const redirect = useNavigate();
   const links = [
     {
       id: 1,
@@ -31,6 +32,10 @@ const UserProfileMenu = () => {
 
   const handleLogout = () => {
     //pops up a model
+    setIsLoggedIn(false);
+    localStorage.removeItem("mb-token");
+    localStorage.removeItem("user");
+    redirect("/login");
   };
   return (
     <div
@@ -49,7 +54,10 @@ const UserProfileMenu = () => {
           </Link>
         );
       })}
-      <button className="w-100 bg-transparent border-0 d-flex gap-2 align-items-center border-bottom border-1 border-secondary-subtle text-decoration-none mb-3 text-secondary pb-2 fs-6">
+      <button
+        onClick={handleLogout}
+        className="w-100 bg-transparent border-0 d-flex gap-2 align-items-center border-bottom border-1 border-secondary-subtle text-decoration-none mb-3 text-secondary pb-2 fs-6"
+      >
         <MdOutlineLogout className="text-danger" />
         logout
       </button>

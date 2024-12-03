@@ -3,8 +3,11 @@ import Layout from "../components/Layout";
 import { MdCancel, MdLocationPin } from "react-icons/md";
 import ActionBtn from "../components/ActionBtn";
 import SuccessModal from "../components/SuccessModal";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CreateEvent = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [online, setOnline] = useState(false);
   const [file, setFile] = useState(null);
   const [free, setFree] = useState(false);
@@ -14,6 +17,7 @@ const CreateEvent = () => {
   const [tagInput, setTagInput] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
+    title: "",
     date: "",
     startTime: "",
     endTime: "",
@@ -57,9 +61,14 @@ const CreateEvent = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const url = "https://mbevents-server-4kl8.onrender.com/api/v1/events";
+  const url2 = "http://localhost:3000/api/v1/events";
+  const token = localStorage.getItem("mb-token");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
+
     const formDataToSend = new FormData();
 
     // Append all formData fields
@@ -70,24 +79,43 @@ const CreateEvent = () => {
     }
 
     // Append the tags array as a stringified JSON
-    formDataToSend.append("tags", JSON.stringify(tags));
+    formDataToSend.append("tags", tags);
 
     // Append online and free fields
     formDataToSend.append("online", online);
     formDataToSend.append("free", free);
     formDataToSend.append("image", file);
 
-    // Debugging: Log the formData entries
-    for (let pair of formDataToSend.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
-
     // Make the API request (you can use fetch/axios here)
+    try {
+      const result = await axios.post(url, formDataToSend, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (result.status === 201) {
+        setShowModal(true);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message, {
+        position: "top-center",
+        autoClose: 9000,
+      });
+    } finally {
+      setOnline(false);
+      setFree(false);
+      setTags([]);
+      setFile(null);
+      setImgPreview(null);
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <Layout>
-      {showModal && <SuccessModal showModal={showModal} />}
+      {showModal && (
+        <SuccessModal showModal={showModal} setShowModal={setShowModal} />
+      )}
       <div className="container my-4">
         <h2 className="fs-4">Create Event</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -134,6 +162,22 @@ const CreateEvent = () => {
               )}
             </div>
           </div>
+          {/* Title */}
+          <div className="mt-3">
+            <label htmlFor="title" className="form-label fs-4 fw-semibold">
+              Title
+            </label>
+            <input
+              id="title"
+              required
+              type="text"
+              className="form-control shadow-none bg-secondary-subtle py-2"
+              name="title"
+              placeholder="Event Title"
+              onChange={handleChange}
+              style={{ width: "279px" }}
+            />
+          </div>
 
           {/* Date and Time */}
           <div className="mt-3">
@@ -145,6 +189,7 @@ const CreateEvent = () => {
                 Date
               </label>
               <input
+                required
                 id="date"
                 type="date"
                 className="form-control shadow-none bg-secondary-subtle py-2"
@@ -160,6 +205,7 @@ const CreateEvent = () => {
                 </label>
                 <input
                   id="start"
+                  required
                   type="time"
                   className="form-control shadow-none bg-secondary-subtle py-2"
                   name="startTime"
@@ -172,6 +218,7 @@ const CreateEvent = () => {
                   Time (End)
                 </label>
                 <input
+                  required
                   type="time"
                   id="end"
                   className="form-control shadow-none bg-secondary-subtle py-2"
@@ -229,6 +276,7 @@ const CreateEvent = () => {
               Description
             </label>
             <textarea
+              required
               id="desc"
               className="form-control bg-secondary-subtle shadow-none"
               rows="12"
@@ -252,6 +300,7 @@ const CreateEvent = () => {
                 </label>
                 <select
                   id="category"
+                  required
                   className="form-select shadow-none border border-1 py-2"
                   name="category"
                   onChange={handleChange}
@@ -372,7 +421,14 @@ const CreateEvent = () => {
             >
               Cancel
             </button>
-            <ActionBtn type="submit" width={"172px"} content="Create Event" />
+            <ActionBtn
+              type="submit"
+              width={"172px"}
+              content={isSubmitting ? "Creating Event...." : "Create Event"}
+              className={isSubmitting ? "bg-secondary" : "specialbtn"}
+              disabled={isSubmitting}
+              cursor={isSubmitting && "not-allowed"}
+            />
           </div>
         </form>
       </div>

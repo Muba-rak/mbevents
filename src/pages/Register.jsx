@@ -4,11 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ActionBtn from "../components/ActionBtn";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import logo from "../assets/logo.png";
-
+import axios from "axios";
+import { toast } from "react-toastify";
 import { registerSchema } from "../utils/formValidator";
 
 const Register = () => {
@@ -16,19 +17,33 @@ const Register = () => {
   const [show2, setShow2] = useState(false);
   const toggleShow = () => setShow(!show);
   const toggleShow2 = () => setShow2(!show2);
+  const redirect = useNavigate();
 
   const {
     register,
     handleSubmit,
-    control,
+
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
-
-  const onSubmit = (data) => {
+  const url = "https://mbevents-server-4kl8.onrender.com/api/v1/register";
+  const onSubmit = async (data) => {
     // Handle form submission logic here
-    console.log(data);
+    try {
+      const result = await axios.post(url, data);
+      if (result.status === 201) {
+        toast.success("Account Created Successfully", {
+          position: "top-center",
+        });
+        redirect("/login");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message, {
+        position: "top-center",
+        autoClose: 9000,
+      });
+    }
   };
 
   return (
@@ -131,7 +146,8 @@ const Register = () => {
           width={"100%"}
           content={isSubmitting ? "Signing Up..." : "Sign Up"}
           type="submit"
-          className="specialbtn"
+          className={isSubmitting ? "bg-secondary" : "specialbtn"}
+          cursor={isSubmitting && "not-allowed"}
         />
 
         <h2 className="my-3 fs-6">
