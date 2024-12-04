@@ -62,13 +62,10 @@ const CreateEvent = () => {
     setFormData({ ...formData, [name]: value });
   };
   const url = "https://mbevents-server-4kl8.onrender.com/api/v1/events";
-  const url2 = "http://localhost:3000/api/v1/events";
   const token = localStorage.getItem("mb-token");
-
   const handleSubmit = async (e) => {
-    setIsSubmitting(true);
     e.preventDefault();
-
+    setIsSubmitting(true);
     const formDataToSend = new FormData();
 
     // Append all formData fields
@@ -97,17 +94,26 @@ const CreateEvent = () => {
         setShowModal(true);
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || error?.message, {
-        position: "top-center",
-        autoClose: 9000,
-      });
+      console.log(error);
+      toast.error(error?.response?.data?.message || error?.message);
     } finally {
-      setOnline(false);
-      setFree(false);
-      setTags([]);
-      setFile(null);
-      setImgPreview(null);
       setIsSubmitting(false);
+      setFree(false);
+      setOnline(false);
+      setImgPreview(null);
+      setFile(null);
+      setFormData({
+        title: "",
+        date: "",
+        startTime: "",
+        endTime: "",
+        location: "",
+        description: "",
+        category: "",
+        regularPrice: "",
+        vipPrice: "",
+      });
+      setTags([]);
     }
   };
 
@@ -162,23 +168,24 @@ const CreateEvent = () => {
               )}
             </div>
           </div>
-          {/* Title */}
+          {/* TITLE */}
           <div className="mt-3">
             <label htmlFor="title" className="form-label fs-4 fw-semibold">
               Title
             </label>
+
             <input
-              id="title"
-              required
-              type="text"
-              className="form-control shadow-none bg-secondary-subtle py-2"
-              name="title"
-              placeholder="Event Title"
               onChange={handleChange}
               style={{ width: "279px" }}
+              required
+              id="title"
+              name="title"
+              type="text"
+              className="form-control bg-secondary-subtle py-2 shadow-none"
+              placeholder="Event Title"
+              value={formData.title}
             />
           </div>
-
           {/* Date and Time */}
           <div className="mt-3">
             <label className="form-label fs-4 fw-semibold">
@@ -189,6 +196,7 @@ const CreateEvent = () => {
                 Date
               </label>
               <input
+                value={formData.date}
                 required
                 id="date"
                 type="date"
@@ -204,12 +212,13 @@ const CreateEvent = () => {
                   Time (Start)
                 </label>
                 <input
-                  id="start"
                   required
+                  id="start"
                   type="time"
                   className="form-control shadow-none bg-secondary-subtle py-2"
                   name="startTime"
                   onChange={handleChange}
+                  value={formData.startTime}
                   style={{ width: "279px" }}
                 />
               </div>
@@ -218,12 +227,12 @@ const CreateEvent = () => {
                   Time (End)
                 </label>
                 <input
-                  required
                   type="time"
                   id="end"
                   className="form-control shadow-none bg-secondary-subtle py-2"
                   name="endTime"
                   onChange={handleChange}
+                  value={formData.endTime}
                   style={{ width: "279px" }}
                 />
               </div>
@@ -248,6 +257,7 @@ const CreateEvent = () => {
                 placeholder="Enter Location"
                 name="location"
                 disabled={online}
+                value={formData.location}
                 onChange={handleChange}
               />
               <div className="form-check form-check-reverse form-switch">
@@ -276,12 +286,12 @@ const CreateEvent = () => {
               Description
             </label>
             <textarea
-              required
               id="desc"
               className="form-control bg-secondary-subtle shadow-none"
               rows="12"
               name="description"
               onChange={handleChange}
+              value={formData.description}
             ></textarea>
           </div>
 
@@ -300,10 +310,10 @@ const CreateEvent = () => {
                 </label>
                 <select
                   id="category"
-                  required
                   className="form-select shadow-none border border-1 py-2"
                   name="category"
                   onChange={handleChange}
+                  value={formData.category}
                   style={{ width: "241px" }}
                 >
                   <option value="">Category</option>
@@ -389,6 +399,7 @@ const CreateEvent = () => {
                     className="form-control shadow-none bg-secondary-subtle py-2"
                     name="regularPrice"
                     onChange={handleChange}
+                    value={formData.regularPrice}
                     placeholder="Enter Regular Price"
                   />
                 </div>
@@ -404,6 +415,7 @@ const CreateEvent = () => {
                     type="number"
                     className="form-control shadow-none bg-secondary-subtle py-2"
                     name="vipPrice"
+                    value={formData.vipPrice}
                     onChange={handleChange}
                     placeholder="Enter VIP Price"
                   />
@@ -424,10 +436,8 @@ const CreateEvent = () => {
             <ActionBtn
               type="submit"
               width={"172px"}
-              content={isSubmitting ? "Creating Event...." : "Create Event"}
+              content={isSubmitting ? "Creating event...." : "Create Event"}
               className={isSubmitting ? "bg-secondary" : "specialbtn"}
-              disabled={isSubmitting}
-              cursor={isSubmitting && "not-allowed"}
             />
           </div>
         </form>
