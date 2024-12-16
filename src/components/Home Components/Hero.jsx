@@ -3,6 +3,7 @@ import ActionBtn from "../ActionBtn";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const token = localStorage.getItem("mb-token");
   return (
     <div className="hero-section">
       <div className=" container h-100 w-100 d-flex justify-content-start align-items-center text-white">
@@ -15,9 +16,19 @@ const Hero = () => {
             gatherings with ease. Create events, connect with your audience, and
             start making lasting memories today!"
           </p>
-          <Link to="/register">
-            <ActionBtn content="Sign Up" width="264px" className="herobtn" />
-          </Link>
+          {token ? (
+            <Link to="/your-events">
+              <ActionBtn
+                content="Your Events"
+                width="264px"
+                className="herobtn"
+              />
+            </Link>
+          ) : (
+            <Link to="/register">
+              <ActionBtn content="Sign Up" width="264px" className="herobtn" />
+            </Link>
+          )}
         </div>
       </div>
     </div>
